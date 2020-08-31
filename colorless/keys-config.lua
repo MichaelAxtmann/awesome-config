@@ -197,10 +197,10 @@ function hotkeys:init(args)
 			{ env.mod }, "a", function() appswitcher:switch() end,
 			{ description = "Select next app", group = "Navigation" }
 		},
-		{
-			{ env.mod }, "q", function() appswitcher:switch({ reverse = true }) end,
-			{ description = "Select previous app", group = "Navigation" }
-		},
+		-- {
+		-- 	{ env.mod }, "q", function() appswitcher:switch({ reverse = true }) end,
+		-- 	{ description = "Select previous app", group = "Navigation" }
+		-- },
 	}
 
 	local appswitcher_keys_action = {
@@ -343,16 +343,52 @@ function hotkeys:init(args)
 			{ env.mod }, "u", awful.client.urgent.jumpto,
 			{ description = "Go to urgent client", group = "Client focus" }
 		},
-		{
-			{ env.mod }, "Tab", focus_to_previous,
-			{ description = "Go to previos client", group = "Client focus" }
-		},
+		-- {
+		-- 	{ env.mod }, "Tab", focus_to_previous,
+		-- 	{ description = "Go to previos client", group = "Client focus" }
+		-- },
 
 		{
-			{ env.mod }, "w", function() mainmenu:show() end,
-			{ description = "Show main menu", group = "Widgets" }
+			{ env.mod }, "Tab", function() awful.screen.focus_relative( 1) end,
+			{ description = "Switch between different monitors", group = "Main" }
 		},
 		{
+			{ env.mod }, "e", function() awful.spawn("emacsclient -nc --alternate-editor emacs ~/.emacs.d/startpage.org") end,
+			{ description = "Open emacs", group = "Main" }
+		},
+		{
+			{ env.mod }, "t", function() awful.spawn("thunderbird") end,
+			{ description = "Open thunderbird", group = "Main" }
+		},
+		{
+			{ env.mod }, "w", function() awful.spawn("chrome") end,
+			{ description = "Open firefox", group = "Main" }
+		},
+		{
+			{ env.mod }, "o", function() awful.spawn("autorandr --change") end,
+			{ description = "Autorandr change config", group = "Main" }
+		},
+		{
+			{ env.mod }, "Down", function() awful.client.focus.byidx( 1) end,
+			{ description = "Focus next window", group = "Main" }
+		},
+		{
+			{ env.mod }, "Up", function() awful.client.focus.byidx( -1) end,
+			{ description = "Focus next window", group = "Main" }
+		},
+		{
+			{ env.mod }, "q", function() if client.focus then client.focus:kill() end end,
+			{ description = "Fill current application", group = "Main" }
+		},
+
+
+
+
+		-- {
+		-- 	{ env.mod }, "w", function() mainmenu:show() end,
+		-- 	{ description = "Show main menu", group = "Widgets" }
+		-- },
+ 		{
 			{ env.mod }, "r", function() apprunner:show() end,
 			{ description = "Application launcher", group = "Widgets" }
 		},
@@ -369,10 +405,10 @@ function hotkeys:init(args)
 			{ description = "Application quick launcher", group = "Main" }
 		},
 
-		{
-			{ env.mod }, "t", function() redtitle.toggle(client.focus) end,
-			{ description = "Show/hide titlebar for focused client", group = "Titlebar" }
-		},
+		-- {
+		-- 	{ env.mod }, "t", function() redtitle.toggle(client.focus) end,
+		-- 	{ description = "Show/hide titlebar for focused client", group = "Titlebar" }
+		-- },
 		{
 			{ env.mod, "Control" }, "t", function() redtitle.switch(client.focus) end,
 			{ description = "Switch titlebar view for focused client", group = "Titlebar" }
@@ -391,17 +427,17 @@ function hotkeys:init(args)
 			{ description = "Switch to next with current tag", group = "Application switcher" }
 		},
 		{
-			{ env.mod }, "q", nil, function() appswitcher:show({ filter = current, reverse = true }) end,
+			{ env.mod, "Shift" }, "q", nil, function() appswitcher:show({ filter = current, reverse = true }) end,
 			{ description = "Switch to previous with current tag", group = "Application switcher" }
 		},
 		{
 			{ env.mod, "Shift" }, "a", nil, function() appswitcher:show({ filter = allscr }) end,
 			{ description = "Switch to next through all tags", group = "Application switcher" }
 		},
-		{
-			{ env.mod, "Shift" }, "q", nil, function() appswitcher:show({ filter = allscr, reverse = true }) end,
-			{ description = "Switch to previous through all tags", group = "Application switcher" }
-		},
+		-- {
+		-- 	{ env.mod }, "q", nil, function() appswitcher:show({ filter = allscr, reverse = true }) end,
+		-- 	{ description = "Switch to previous through all tags", group = "Application switcher" }
+		-- },
 
 		{
 			{ env.mod }, "Escape", awful.tag.history.restore,
@@ -420,23 +456,27 @@ function hotkeys:init(args)
 			{ env.mod }, "y", function() laybox:toggle_menu(mouse.screen.selected_tag) end,
 			{ description = "Show layout menu", group = "Layouts" }
 		},
-		{
-			{ env.mod }, "Up", function() awful.layout.inc(1) end,
-			{ description = "Select next layout", group = "Layouts" }
-		},
-		{
-			{ env.mod }, "Down", function() awful.layout.inc(-1) end,
-			{ description = "Select previous layout", group = "Layouts" }
-		},
+		-- {
+		-- 	{ env.mod }, "Up", function() awful.layout.inc(1) end,
+		-- 	{ description = "Select next layout", group = "Layouts" }
+		-- },
+		-- {
+		-- 	{ env.mod }, "Down", function() awful.layout.inc(-1) end,
+		-- 	{ description = "Select previous layout", group = "Layouts" }
+		-- },
 	}
 
 	-- Client keys
 	--------------------------------------------------------------------------------
 	self.raw.client = {
 		{
-			{ env.mod }, "f", function(c) c.fullscreen = not c.fullscreen; c:raise() end,
+			{ env.mod }, "`", function(c) c.fullscreen = not c.fullscreen; c:raise() end,
 			{ description = "Toggle fullscreen", group = "Client keys" }
 		},
+		-- {
+		-- 	{ env.mod, "Shift" }, "a", function(c) c:move_to_screen() end,
+		-- 	{ description = "Close", group = "Client keys" }
+		-- },
 		{
 			{ env.mod }, "F4", function(c) c:kill() end,
 			{ description = "Close", group = "Client keys" }

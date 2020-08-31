@@ -43,12 +43,15 @@ function menu:init(args)
 			{ "Applications",  appmenu,      },
 			{ "Terminal",      env.terminal, },
 			separator,
-			{ "Test Item 0", function() naughty.notify({ text = "Test menu 0" }) end,           },
-			{ "Test Item 1", function() naughty.notify({ text = "Test menu 1" }) end, key = "i" },
-			{ "Test Item 2", function() naughty.notify({ text = "Test menu 2" }) end, key = "m" },
+			{ "Hibernate", "sudo /usr/sbin/pm-hibernate",           },
+			{ "Halt", "sudo /sbin/shutdown -h now",           },
+			{ "Reboot", "sudo /sbin/shutdown -r now",           },
+			-- { "Test Item 0", function() naughty.notify({ text = "Test menu 0" }) end,           },
+			-- { "Test Item 1", function() naughty.notify({ text = "Test menu 1" }) end, key = "i" },
+			-- { "Test Item 2", function() naughty.notify({ text = "Test menu 2" }) end, key = "m" },
 			separator,
-			{ "Restart", awesome.restart, },
-			{ "Exit",    awesome.quit, },
+			{ "Restart Awesome", awesome.restart, },
+			{ "Exit Awesome",    awesome.quit, },
 		}
 	})
 
