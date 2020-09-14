@@ -193,10 +193,10 @@ function hotkeys:init(args)
 	-- Appswitcher
 	------------------------------------------------------------
 	local appswitcher_keys_move = {
-		{
-			{ env.mod }, "a", function() appswitcher:switch() end,
-			{ description = "Select next app", group = "Navigation" }
-		},
+		-- {
+		-- 	{ env.mod }, "a", function() appswitcher:switch() end,
+		-- 	{ description = "Select next app", group = "Navigation" }
+		-- },
 		-- {
 		-- 	{ env.mod }, "q", function() appswitcher:switch({ reverse = true }) end,
 		-- 	{ description = "Select previous app", group = "Navigation" }
@@ -422,10 +422,10 @@ function hotkeys:init(args)
 			{ description = "Switch titlebar view for all clients", group = "Titlebar" }
 		},
 
-		{
-			{ env.mod }, "a", nil, function() appswitcher:show({ filter = current }) end,
-			{ description = "Switch to next with current tag", group = "Application switcher" }
-		},
+		-- {
+		-- 	{ env.mod }, "a", nil, function() appswitcher:show({ filter = current }) end,
+		-- 	{ description = "Switch to next with current tag", group = "Application switcher" }
+		-- },
 		{
 			{ env.mod, "Shift" }, "q", nil, function() appswitcher:show({ filter = current, reverse = true }) end,
 			{ description = "Switch to previous with current tag", group = "Application switcher" }
@@ -496,6 +496,10 @@ function hotkeys:init(args)
 		{
 			{ env.mod }, "m", function(c) c.maximized = not c.maximized; c:raise() end,
 			{ description = "Maximize", group = "Client keys" }
+		},
+		{
+			{ env.mod }, "a", function (c) c:move_to_screen() end,
+			{ description = "Move to different screen", group = "Client keys" }
 		}
 	}
 
